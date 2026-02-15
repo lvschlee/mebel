@@ -12,6 +12,7 @@
 		Lightbulb,
 		Sofa
 	} from 'lucide-svelte';
+	import { cart } from '$lib/stores/cart.svelte';
 </script>
 
 <header class="w-full bg-white border-b border-slate-200">
@@ -72,10 +73,17 @@
 				<Heart size={24} />
 				<span class="text-xs font-medium">Избранное</span>
 			</button>
-			<button class="flex flex-col items-center gap-1 text-gray-700 hover:text-emerald-600 transition-colors">
+		<a href="/cart" class="flex flex-col items-center gap-1 text-gray-700 hover:text-emerald-600 transition-colors">
+			<div class="relative">
 				<ShoppingCart size={24} />
-				<span class="text-xs font-medium">Корзина</span>
-			</button>
+				{#if cart.totalItems > 0}
+					<span class="absolute -top-2 -right-2 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+						{cart.totalItems}
+					</span>
+				{/if}
+			</div>
+			<span class="text-xs font-medium">Корзина</span>
+		</a>
 		</div>
 	</div>
 
