@@ -87,39 +87,34 @@
 		</div>
 	</div>
 
-	<!-- Разделитель -->
-	<div class="max-w-[1280px] mx-auto px-8">
-		<div class="border-t border-slate-200"></div>
-	</div>
-
 	<!-- Категории -->
 	<div class="max-w-[1280px] mx-auto px-8 flex items-center gap-8 py-3">
 		<button
-			class="px-4 py-2 bg-gray-100 text-gray-800 font-semibold text-sm rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+			class="px-4 py-2 text-gray-800 font-semibold text-sm rounded-full hover:bg-[#f6f3f4] transition-colors flex items-center gap-2"
 		>
 			<Tag size={16} />
 			Распродажа
 		</button>
 		<button
-			class="px-4 py-2 bg-gray-100 text-gray-800 font-semibold text-sm rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+			class="px-4 py-2 text-gray-800 font-semibold text-sm rounded-full hover:bg-[#f6f3f4] transition-colors flex items-center gap-2"
 		>
 			<Sparkles size={16} />
 			Новинки
 		</button>
 		<button
-			class="px-4 py-2 bg-gray-100 text-gray-800 font-semibold text-sm rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+			class="px-4 py-2 text-gray-800 font-semibold text-sm rounded-full hover:bg-[#f6f3f4] transition-colors flex items-center gap-2"
 		>
 			<Clock size={16} />
 			Услуги
 		</button>
 		<button
-			class="px-4 py-2 bg-gray-100 text-gray-800 font-semibold text-sm rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+			class="px-4 py-2 text-gray-800 font-semibold text-sm rounded-full hover:bg-[#f6f3f4] transition-colors flex items-center gap-2"
 		>
 			<Lightbulb size={16} />
 			Освещение
 		</button>
 		<button
-			class="px-4 py-2 bg-gray-100 text-gray-800 font-semibold text-sm rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+			class="px-4 py-2 text-gray-800 font-semibold text-sm rounded-full hover:bg-[#f6f3f4] transition-colors flex items-center gap-2"
 		>
 			<Sofa size={16} />
 			Диваны

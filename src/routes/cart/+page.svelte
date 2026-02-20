@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-svelte';
+	import { Trash2, Plus, Minus, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { cart } from '$lib/stores/cart.svelte';
+	import ProductCard from '$lib/components/ProductCard.svelte';
 
 	// Вычисление итоговой суммы
 	const total = $derived(
@@ -21,6 +22,23 @@
 			item.quantity -= 1;
 		}
 	}
+
+	// Карусель "Вам может понравиться"
+	let trackEl: HTMLElement | undefined;
+	let carouselOffset = $state(0);
+	let cardStep = $state(0);
+	const maxCarouselOffset = 1;
+
+	$effect(() => {
+		if (trackEl) {
+			const card = trackEl.firstElementChild as HTMLElement;
+			if (card) cardStep = card.offsetWidth + 24;
+		}
+	});
+
+	const carouselTranslate = $derived(carouselOffset * 2 * cardStep);
+	function carouselPrev() { carouselOffset = Math.max(0, carouselOffset - 1); }
+	function carouselNext() { carouselOffset = Math.min(maxCarouselOffset, carouselOffset + 1); }
 </script>
 
 <div class="max-w-[1280px] mx-auto px-8 py-12">
@@ -32,7 +50,7 @@
 		]}
 	/>
 
-	<h1 class="text-3xl md:text-4xl font-medium text-gray-800 mb-8">Корзина</h1>
+	<h1 class="text-2xl font-medium text-gray-800 mb-8">Корзина</h1>
 
 	{#if cart.items.length === 0}
 		<!-- Пустая корзина -->
@@ -150,12 +168,12 @@
 							</span>
 						</div>
 
-						<button
-							type="button"
-							class="w-full bg-emerald-600 text-white py-3 px-6 rounded-full font-medium hover:bg-emerald-700 transition-colors"
+						<a
+							href="/checkout"
+							class="block w-full bg-emerald-600 text-white py-3 px-6 rounded-full font-medium hover:bg-emerald-700 transition-colors text-center"
 						>
 							Оформить заказ
-						</button>
+						</a>
 					</div>
 
 					<div class="flex flex-col gap-2 text-xs text-gray-500">
@@ -166,5 +184,106 @@
 				</div>
 			</div>
 		</div>
+
+	<!-- Вам может понравиться -->
+	<div class="mt-12">
+		<h2 class="text-xl font-medium text-gray-800 mb-6">Вам может понравиться</h2>
+		<div class="relative">
+			{#if carouselOffset > 0}
+				<button
+					type="button"
+					onclick={carouselPrev}
+					class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
+				>
+					<ChevronLeft size={20} />
+				</button>
+			{/if}
+
+			<div class="overflow-hidden">
+				<div
+					bind:this={trackEl}
+					class="flex gap-6 transition-transform duration-500 ease-in-out"
+					style:transform="translateX(-{carouselTranslate}px)"
+				>
+					<div class="shrink-0 w-[calc(25%-18px)]">
+						<ProductCard
+							image="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80"
+							title="Диван угловой"
+							price="24 990 ₽"
+							oldPrice="32 000 ₽"
+							sold="2k+ продано"
+							rating={4}
+							reviewsCount={590}
+						/>
+					</div>
+					<div class="shrink-0 w-[calc(25%-18px)]">
+						<ProductCard
+							image="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&q=80"
+							title="Кресло Comfort"
+							price="11 490 ₽"
+							oldPrice="14 000 ₽"
+							sold="840+ продано"
+							rating={5}
+							reviewsCount={213}
+						/>
+					</div>
+					<div class="shrink-0 w-[calc(25%-18px)]">
+						<ProductCard
+							image="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=400&q=80"
+							title="Обеденный стол"
+							price="18 200 ₽"
+							oldPrice="22 500 ₽"
+							sold="1.3k+ продано"
+							rating={4}
+							reviewsCount={374}
+						/>
+					</div>
+					<div class="shrink-0 w-[calc(25%-18px)]">
+						<ProductCard
+							image="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&q=80"
+							title="Шкаф-купе"
+							price="34 900 ₽"
+							oldPrice="41 000 ₽"
+							sold="560+ продано"
+							rating={4}
+							reviewsCount={128}
+						/>
+					</div>
+					<div class="shrink-0 w-[calc(25%-18px)]">
+						<ProductCard
+							image="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=400&q=80"
+							title="Кровать двуспальная"
+							price="42 500 ₽"
+							oldPrice="55 000 ₽"
+							sold="1.1k+ продано"
+							rating={5}
+							reviewsCount={302}
+						/>
+					</div>
+					<div class="shrink-0 w-[calc(25%-18px)]">
+						<ProductCard
+							image="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=400&q=80"
+							title="Журнальный столик"
+							price="8 990 ₽"
+							oldPrice="11 500 ₽"
+							sold="670+ продано"
+							rating={4}
+							reviewsCount={187}
+						/>
+					</div>
+				</div>
+			</div>
+
+			{#if carouselOffset < maxCarouselOffset}
+				<button
+					type="button"
+					onclick={carouselNext}
+					class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
+				>
+					<ChevronRight size={20} />
+				</button>
+			{/if}
+		</div>
+	</div>
 	{/if}
 </div>
