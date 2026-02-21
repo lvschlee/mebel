@@ -6,6 +6,7 @@
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { cart } from '$lib/stores/cart.svelte';
+	import { favorites } from '$lib/stores/favorites.svelte';
 
 	// Hardcoded данные для демонстрации верстки
 	const product = {
@@ -25,6 +26,9 @@
 			"https://images.unsplash.com/photo-1550254478-ead40cc54513?w=800&h=800&fit=crop",
 		]
 	};
+
+	const productId = product.name.toLowerCase().replace(/\s+/g, '-');
+	const isFavorited = $derived(favorites.has(productId));
 
 	let selectedImageIndex = $state(0);
 	let activeTab = $state<'description' | 'specs'>('description');
@@ -256,10 +260,12 @@
 					</div>
 					<button
 						type="button"
-						class="shrink-0 w-10 h-10 border border-slate-200 rounded-lg flex items-center justify-center hover:bg-gray-50 hover:border-emerald-600 transition-colors"
-						aria-label="Добавить в избранное"
+						class="shrink-0 w-10 h-10 border rounded-lg flex items-center justify-center transition-colors
+							{isFavorited ? 'border-emerald-600 bg-emerald-50 hover:bg-emerald-100' : 'border-slate-200 hover:bg-slate-50 hover:border-emerald-600'}"
+						aria-label={isFavorited ? 'Убрать из избранного' : 'Добавить в избранное'}
+						onclick={() => favorites.toggle({ id: productId, name: product.name, price: product.price, image: product.mainImage })}
 					>
-						<Heart size={20} class="text-gray-600" />
+						<Heart size={20} class={isFavorited ? 'text-emerald-600 fill-emerald-600' : 'text-slate-500'} />
 					</button>
 				</div>
 				<div class="mt-2">

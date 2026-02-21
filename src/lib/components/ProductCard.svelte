@@ -2,6 +2,7 @@
 	import { Heart, Eye, ShoppingCart } from 'lucide-svelte';
 	import RatingWidget from './RatingWidget.svelte';
 	import { cart } from '$lib/stores/cart.svelte';
+	import { favorites } from '$lib/stores/favorites.svelte';
 
 	let {
 		image,
@@ -31,6 +32,7 @@
 
 	// Извлечение числового значения цены из строки
 	const numericPrice = $derived(parseInt(price.replace(/\D/g, ''), 10));
+	const isFavorited = $derived(favorites.has(slug));
 </script>
 
 <a href="/product/{slug}" class="block overflow-hidden group cursor-pointer">
@@ -39,11 +41,14 @@
 		<img src={image} alt={title} class="w-full aspect-square object-cover" />
 		<!-- Кнопка избранного -->
 		<button
-			class="absolute top-3 right-3 w-6 h-6 flex items-center justify-center bg-white rounded-full hover:bg-emerald-50 transition-colors"
-			aria-label="В избранное"
-			onclick={(e) => e.preventDefault()}
+			class="absolute top-3 right-3 w-7 h-7 flex items-center justify-center bg-white rounded-full hover:bg-emerald-50 transition-colors shadow-sm"
+			aria-label={isFavorited ? 'Убрать из избранного' : 'В избранное'}
+			onclick={(e) => {
+				e.preventDefault();
+				favorites.toggle({ id: slug, name: title, price: numericPrice, image });
+			}}
 		>
-			<Heart size={16} class="text-gray-700" />
+			<Heart size={15} class={isFavorited ? 'text-emerald-600 fill-emerald-600' : 'text-slate-500'} />
 		</button>
 		<!-- Бейдж "Почти распродано" -->
 		<div

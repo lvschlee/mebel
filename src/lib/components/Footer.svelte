@@ -10,19 +10,19 @@
 			<div class="flex flex-col gap-3 w-[157px]">
 				<h3 class="text-sm font-semibold text-gray-800">Категории</h3>
 				<div class="flex flex-col gap-2.5">
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Мебель для кухни</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Мебель для гостиной</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Мебель для прихожей</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Столы</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Шкафы</a
 					>
 				</div>
@@ -30,22 +30,22 @@
 
 			<!-- Колонка 2: Продолжение категорий (без заголовка) -->
 			<div class="flex flex-col gap-2.5 w-[154px] pt-[30px]">
-				<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+				<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 					>Комоды</a
 				>
-				<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+				<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 					>Детская мебель</a
 				>
-				<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+				<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 					>Мебель для ванны</a
 				>
-				<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+				<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 					>Офисная мебель</a
 				>
-				<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+				<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 					>Кресла мешки</a
 				>
-				<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+				<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 					>Мебель трансформер</a
 				>
 			</div>
@@ -54,13 +54,13 @@
 			<div class="flex flex-col gap-3 w-[118px]">
 				<h3 class="text-sm font-semibold text-gray-800">Продавцам</h3>
 				<div class="flex flex-col gap-2.5">
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Личный кабинет</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Документация</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Частые вопросы</a
 					>
 				</div>
@@ -70,16 +70,16 @@
 			<div class="flex flex-col gap-3 w-[118px]">
 				<h3 class="text-sm font-semibold text-gray-800">Покупателю</h3>
 				<div class="flex flex-col gap-2.5">
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Доставка</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Оплата</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Сборка</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Обмен и возврат</a
 					>
 				</div>
@@ -89,16 +89,16 @@
 			<div class="flex flex-col gap-3 w-[118px]">
 				<h3 class="text-sm font-semibold text-gray-800">О платформе</h3>
 				<div class="flex flex-col gap-2.5">
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Поддержка</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Способы оплаты</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Производителям</a
 					>
-					<a href="#" class="text-sm font-semibold text-gray-700 hover:text-emerald-600 transition-colors"
+					<a href="#" class="text-sm font-normal text-gray-500 hover:text-gray-800 transition-colors"
 						>Контакты</a
 					>
 				</div>
@@ -110,13 +110,13 @@
 			<span class="text-sm font-medium text-gray-500">© 2026 Мебель Урала</span>
 			<div class="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
 			<a
-				href="#"
+				href="/terms"
 				class="text-sm font-medium text-gray-500 hover:text-gray-700 border-b border-gray-600 hover:border-gray-700 transition-colors"
 				>Пользовательское соглашение</a
 			>
 			<div class="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
 			<a
-				href="#"
+				href="/privacy"
 				class="text-sm font-medium text-gray-500 hover:text-gray-700 border-b border-gray-600 hover:border-gray-700 transition-colors"
 				>Политика конфиденциальности</a
 			>

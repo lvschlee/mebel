@@ -9,37 +9,37 @@
 		<ul class="flex flex-col gap-2">
 			<li>
 				<label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 hover:text-emerald-600 transition-colors">
-					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 					<span>Диваны и кресла</span>
 				</label>
 			</li>
 			<li>
 				<label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 hover:text-emerald-600 transition-colors">
-					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 					<span>Столы и стулья</span>
 				</label>
 			</li>
 			<li>
 				<label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 hover:text-emerald-600 transition-colors">
-					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 					<span>Кровати и матрасы</span>
 				</label>
 			</li>
 			<li>
 				<label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 hover:text-emerald-600 transition-colors">
-					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 					<span>Шкафы и комоды</span>
 				</label>
 			</li>
 			<li>
 				<label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 hover:text-emerald-600 transition-colors">
-					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 					<span>Кухонные гарнитуры</span>
 				</label>
 			</li>
 			<li>
 				<label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 hover:text-emerald-600 transition-colors">
-					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+					<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 					<span>Прихожие</span>
 				</label>
 			</li>
@@ -97,7 +97,7 @@
 		<h3 class="text-sm font-semibold text-gray-800 mb-2.5">Рейтинг</h3>
 		<div class="flex flex-col gap-2">
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				<button class="flex items-center gap-1 text-sm text-gray-700 hover:text-emerald-600">
 					<Star size={16} class="fill-gray-800 text-gray-800" />
 					<Star size={16} class="fill-gray-800 text-gray-800" />
@@ -107,7 +107,7 @@
 				</button>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				<button class="flex items-center gap-1 text-sm text-gray-700 hover:text-emerald-600">
 					<Star size={16} class="fill-gray-800 text-gray-800" />
 					<Star size={16} class="fill-gray-800 text-gray-800" />
@@ -118,7 +118,7 @@
 				</button>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				<button class="flex items-center gap-1 text-sm text-gray-700 hover:text-emerald-600">
 					<Star size={16} class="fill-gray-800 text-gray-800" />
 					<Star size={16} class="fill-gray-800 text-gray-800" />
@@ -129,7 +129,7 @@
 				</button>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				<button class="flex items-center gap-1 text-sm text-gray-700 hover:text-emerald-600">
 					<Star size={16} class="fill-gray-800 text-gray-800" />
 					<Star size={16} class="fill-gray-800 text-gray-800" />
@@ -140,7 +140,7 @@
 				</button>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				<button class="flex items-center gap-1 text-sm text-gray-700 hover:text-emerald-600">
 					<Star size={16} class="fill-gray-800 text-gray-800" />
 					<Star size={16} class="text-gray-300" />
@@ -160,23 +160,23 @@
 		<h3 class="text-sm font-semibold text-gray-800 mb-2.5">Бренд</h3>
 		<div class="flex flex-col gap-2">
 			<label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				Askona
 			</label>
 			<label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				Hoff
 			</label>
 			<label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				Лазурит
 			</label>
 			<label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				Шатура
 			</label>
 			<label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 disabled:opacity-50 disabled:pointer-events-none" />
+				<input type="checkbox" class="w-[18px] h-[18px] border border-gray-300 rounded checked:bg-emerald-600 checked:border-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" />
 				Орматек
 			</label>
 		</div>
