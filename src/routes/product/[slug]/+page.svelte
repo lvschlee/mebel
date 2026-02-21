@@ -68,15 +68,6 @@
 			rating: 4.8,
 			reviewsCount: 56
 		},
-		{
-			image: 'https://images.unsplash.com/photo-1519643381401-22c77e60520e?w=400&h=400&fit=crop',
-			title: 'Кресло-качалка "Уют"',
-			price: '35 990 ₽',
-			oldPrice: '42 990 ₽',
-			sold: '89 продано',
-			rating: 4.6,
-			reviewsCount: 23
-		}
 	];
 </script>
 
@@ -443,7 +434,7 @@
 		</a>
 	</div>
 	
-	<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+	<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
 		{#each relatedProducts as product}
 			<ProductCard
 				image={product.image}

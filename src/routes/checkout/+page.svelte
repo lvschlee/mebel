@@ -14,7 +14,7 @@
 		<div class="grid grid-cols-2 items-stretch flex-1">
 
 			<!-- Левая колонка: форма на белом фоне -->
-			<div class="bg-white px-8 pb-8 pt-8">
+			<div class="bg-white px-8 pb-24 pt-8">
 				<h1 class="text-[20px] font-semibold text-gray-800 pt-8">Оформление заказа</h1>
 
 				<!-- Контактные данные -->
@@ -154,7 +154,7 @@
 			</div>
 
 			<!-- Правая колонка: итог на сером фоне -->
-			<div class="pt-16 pb-20 px-16 bg-gray-50">
+			<div class="pt-16 pb-40 px-16 bg-gray-50">
 			<div class="sticky top-10 flex flex-col gap-5 max-w-100">
 				<h2 class="text-base font-semibold text-gray-800">Ваш заказ</h2>
 
