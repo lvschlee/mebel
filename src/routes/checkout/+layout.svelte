@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
+	import { ChevronLeft, ChevronRight, Home, ShoppingCart } from 'lucide-svelte';
 	import { page } from '$app/state';
 
 	let { children } = $props();
@@ -23,9 +23,42 @@
 	const backLabel = 'Назад';
 </script>
 
+<header class="bg-white border-b border-slate-200">
+	<div class="max-w-7xl mx-auto px-8 py-3 grid grid-cols-3 items-center">
+		<!-- Левый блок: логотип -->
+		<div class="flex items-center">
+			<a href="/" class="flex items-center gap-1 text-emerald-600 hover:text-emerald-700 transition-colors">
+				<Home size={20} />
+				<span class="text-base font-bold">Мебель Урала</span>
+			</a>
+		</div>
+
+		<!-- Центральный блок: шаги заказа -->
+		<div class="flex items-center justify-center gap-1.5 text-[13px] whitespace-nowrap">
+			<span class={step === 1 ? 'text-gray-800 font-medium' : 'text-gray-400'}>Оформление заказа</span>
+			<ChevronRight size={12} class="text-gray-300 shrink-0" />
+			<span class={step === 2 ? 'text-gray-800 font-medium' : 'text-gray-400'}>Оплата и доставка</span>
+			<ChevronRight size={12} class="text-gray-300 shrink-0" />
+			<span class={step === 3 ? 'text-gray-800 font-medium' : 'text-gray-400'}>Подтверждение заказа</span>
+		</div>
+
+		<!-- Правый блок: кнопка назад в корзину -->
+		<div class="flex items-center justify-end">
+			<a
+				href="/cart"
+				class="flex items-center gap-1.5 px-3 py-2 rounded-full text-gray-500 hover:bg-[#F9FAFB] transition-colors"
+				aria-label="Назад в корзину"
+			>
+				<ChevronLeft size={16} />
+				<ShoppingCart size={16} />
+			</a>
+		</div>
+	</div>
+</header>
+
 {@render children()}
 
-<footer class="bg-white border-t border-slate-200">
+<footer class="bg-white border-t border-slate-200 fixed bottom-0 left-0 right-0 z-50">
 	<div class="max-w-[1280px] mx-auto px-8 py-3 grid grid-cols-3 items-center">
 
 		<!-- Левый блок: кнопка назад -->

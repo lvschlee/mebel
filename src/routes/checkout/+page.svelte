@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChevronRight, ChevronLeft, ShoppingCart, Home, Truck, ShieldCheck, User } from 'lucide-svelte';
+	import { Truck, ShieldCheck, User } from 'lucide-svelte';
 	import { cart } from '$lib/stores/cart.svelte';
 
 	const total = $derived(
@@ -17,50 +17,17 @@
 	let deliveryMethod = $state<'courier' | 'post' | 'pickup'>('courier');
 </script>
 
-<div class="min-h-screen bg-white flex flex-col">
-	<!-- Шапка страницы -->
-	<header class="bg-white border-b border-slate-200">
-		<div class="max-w-7xl mx-auto px-8 py-3 grid grid-cols-3 items-center">
-			<!-- Левый блок: логотип -->
-			<div class="flex items-center">
-				<a href="/" class="flex items-center gap-1 text-emerald-600 hover:text-emerald-700 transition-colors">
-					<Home size={20} />
-					<span class="text-base font-bold">Мебель Урала</span>
-				</a>
-			</div>
-
-			<!-- Центральный блок: шаги заказа -->
-			<div class="flex items-center justify-center gap-1.5 text-[13px] whitespace-nowrap">
-				<span class="text-gray-800 font-medium">Оформление заказа</span>
-				<ChevronRight size={12} class="text-gray-300 shrink-0" />
-				<span class="text-gray-400">Оплата и доставка</span>
-				<ChevronRight size={12} class="text-gray-300 shrink-0" />
-				<span class="text-gray-400">Подтверждение заказа</span>
-			</div>
-
-			<!-- Правый блок: кнопка назад в корзину -->
-			<div class="flex items-center justify-end">
-				<a
-					href="/cart"
-					class="flex items-center gap-1.5 px-3 py-2 rounded-full text-gray-500 hover:bg-[#F9FAFB] transition-colors"
-					aria-label="Назад в корзину"
-				>
-					<ChevronLeft size={16} />
-					<ShoppingCart size={16} />
-				</a>
-			</div>
-		</div>
-	</header>
-
+<div class="flex flex-col flex-1 bg-[linear-gradient(to_right,white_50%,#f9fafb_50%)]">
 	<!-- Контент -->
-	<main class="flex-1 max-w-7xl mx-auto w-full">
-		<div class="grid grid-cols-[1fr_400px] items-start">
+	<main class="flex-1 max-w-7xl mx-auto w-full flex flex-col">
+		<div class="grid grid-cols-2 items-stretch flex-1">
 
 			<!-- Левая колонка: форма на белом фоне -->
-			<div class="bg-white">
+			<div class="bg-white px-8 pb-8 pt-8">
+				<h1 class="text-[20px] font-semibold text-gray-800 pt-8">Оформление заказа</h1>
 
 				<!-- Контактные данные -->
-				<section class="p-6">
+				<section class="py-6">
 					<h2 class="text-base font-semibold text-gray-800 mb-5 flex items-center gap-2">
 						<User size={18} class="text-emerald-600" />
 						Контактные данные
@@ -99,10 +66,10 @@
 					</div>
 				</section>
 
-				<hr class="mx-6 border-gray-100" />
+				<hr class="border-gray-100" />
 
 				<!-- Адрес доставки -->
-				<section class="p-6">
+				<section class="py-6">
 					<h2 class="text-base font-semibold text-gray-800 mb-5 flex items-center gap-2">
 						<Truck size={18} class="text-emerald-600" />
 						Адрес доставки
@@ -161,10 +128,10 @@
 					</div>
 				</section>
 
-				<hr class="mx-6 border-gray-100" />
+				<hr class="border-gray-100" />
 
 				<!-- Способ доставки -->
-				<section class="p-6">
+				<section class="py-6">
 					<h2 class="text-base font-semibold text-gray-800 mb-5 flex items-center gap-2">
 						<Truck size={18} class="text-emerald-600" />
 						Способ доставки
@@ -196,27 +163,9 @@
 			</div>
 
 			<!-- Правая колонка: итог на сером фоне -->
-			<div class="py-10 px-8">
-			<div class="sticky top-10 flex flex-col gap-5 bg-gray-50 rounded-2xl p-6">
+			<div class="pt-16 pb-20 px-16 bg-gray-50">
+			<div class="sticky top-10 flex flex-col gap-5 max-w-100">
 				<h2 class="text-base font-semibold text-gray-800">Ваш заказ</h2>
-
-				<!-- Список товаров -->
-				<div class="flex flex-col gap-3">
-					{#each cart.items as item (item.id)}
-						<div class="flex items-center gap-3">
-							<img src={item.image} alt={item.name} class="w-12 h-12 object-cover rounded-lg shrink-0" />
-							<div class="flex-1 min-w-0">
-								<p class="text-sm text-gray-800 truncate">{item.name}</p>
-								<p class="text-xs text-gray-500">{item.quantity} шт.</p>
-							</div>
-							<p class="text-sm font-medium text-gray-800 shrink-0">
-								{(item.price * item.quantity).toLocaleString('ru-RU')} ₽
-							</p>
-						</div>
-					{/each}
-				</div>
-
-				<hr class="border-gray-200" />
 
 				<div class="flex flex-col gap-2">
 					<div class="flex items-center justify-between text-sm">
@@ -233,12 +182,23 @@
 					</div>
 				</div>
 
-				<button
-					type="button"
-					class="w-full bg-emerald-600 text-white py-3 px-6 rounded-full font-medium hover:bg-emerald-700 transition-colors"
-				>
-					Подтвердить заказ
-				</button>
+				<hr class="border-gray-200" />
+
+				<!-- Список товаров -->
+				<div class="flex flex-col gap-6">
+					{#each cart.items as item (item.id)}
+						<div class="flex items-center gap-3">
+							<img src={item.image} alt={item.name} class="w-18 h-18 object-cover rounded-lg shrink-0" />
+							<div class="flex-1 min-w-0">
+								<p class="text-sm text-gray-800 truncate">{item.name}</p>
+								<p class="text-xs text-gray-500">{item.quantity} шт.</p>
+							</div>
+							<p class="text-sm font-medium text-gray-800 shrink-0">
+								{(item.price * item.quantity).toLocaleString('ru-RU')} ₽
+							</p>
+						</div>
+					{/each}
+				</div>
 
 				<div class="flex items-center gap-2 text-xs text-gray-500 justify-center">
 					<ShieldCheck size={14} class="text-emerald-500" />

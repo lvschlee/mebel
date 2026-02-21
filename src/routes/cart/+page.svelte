@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Trash2, Plus, Minus, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-svelte';
+	import { Trash2, Plus, Minus, ShoppingBag, ChevronLeft, ChevronRight, ShieldCheck, RotateCcw, BadgeCheck } from 'lucide-svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { cart } from '$lib/stores/cart.svelte';
 	import ProductCard from '$lib/components/ProductCard.svelte';
@@ -24,7 +24,7 @@
 	}
 
 	// Карусель "Вам может понравиться"
-	let trackEl: HTMLElement | undefined;
+	let trackEl: HTMLElement | undefined = $state();
 	let carouselOffset = $state(0);
 	let cardStep = $state(0);
 	const maxCarouselOffset = 1;
@@ -73,12 +73,17 @@
 		</div>
 	{:else}
 		<!-- Список товаров -->
-		<div class="grid grid-cols-[1fr_400px] gap-8">
+		<div class="grid grid-cols-[1fr_400px] gap-16">
 			<!-- Левая колонка: товары -->
-			<div class="flex flex-col gap-4">
-				{#each cart.items as item (item.id)}
+			<div class="flex flex-col">
+				{#each cart.items as item, i (item.id)}
+					{#if i > 0}
+						<div class="pt-6 mb-6">
+							<hr class="border-slate-200" />
+						</div>
+					{/if}
 					<div
-						class="flex gap-4 p-4 border border-slate-200 rounded-2xl hover:shadow-md transition-shadow"
+						class="flex gap-4 p-4"
 					>
 						<!-- Изображение товара -->
 						<div class="shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-lg overflow-hidden">
@@ -140,7 +145,7 @@
 
 		<!-- Правая колонка: итоги -->
 		<div class="sticky top-8 h-fit">
-			<div class="border border-slate-200 rounded-2xl p-6 flex flex-col gap-6">
+			<div class="bg-slate-50 rounded-2xl p-6 flex flex-col gap-6">
 					<h2 class="text-xl font-semibold text-gray-800">Итого</h2>
 
 					<div class="flex flex-col gap-3">
@@ -177,9 +182,9 @@
 					</div>
 
 					<div class="flex flex-col gap-2 text-xs text-gray-500">
-						<p>• Безопасная оплата</p>
-						<p>• Возврат в течение 30 дней</p>
-						<p>• Гарантия качества</p>
+						<p class="flex items-center gap-1.5"><ShieldCheck size={14} class="text-emerald-500 shrink-0" /> Безопасная оплата</p>
+						<p class="flex items-center gap-1.5"><RotateCcw size={14} class="text-emerald-500 shrink-0" /> Возврат в течение 30 дней</p>
+						<p class="flex items-center gap-1.5"><BadgeCheck size={14} class="text-emerald-500 shrink-0" /> Гарантия качества</p>
 					</div>
 				</div>
 			</div>
