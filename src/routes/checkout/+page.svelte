@@ -1,20 +1,11 @@
 <script lang="ts">
 	import { Truck, ShieldCheck, User } from 'lucide-svelte';
 	import { cart } from '$lib/stores/cart.svelte';
+	import { checkout } from '$lib/stores/checkout.svelte';
 
 	const total = $derived(
 		cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 	);
-
-	let name = $state('');
-	let phone = $state('');
-	let email = $state('');
-	let street = $state('');
-	let city = $state('');
-	let region = $state('');
-	let postalCode = $state('');
-	let comment = $state('');
-	let deliveryMethod = $state<'courier' | 'post' | 'pickup'>('courier');
 </script>
 
 <div class="flex flex-col flex-1 bg-[linear-gradient(to_right,white_50%,#f9fafb_50%)]">
@@ -38,7 +29,7 @@
 							<input
 								id="name"
 								type="text"
-								bind:value={name}
+								bind:value={checkout.name}
 								placeholder="Иван Иванов"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -48,7 +39,7 @@
 							<input
 								id="phone"
 								type="tel"
-								bind:value={phone}
+								bind:value={checkout.phone}
 								placeholder="+7 (999) 000-00-00"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -58,7 +49,7 @@
 							<input
 								id="email"
 								type="email"
-								bind:value={email}
+								bind:value={checkout.email}
 								placeholder="example@mail.ru"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -80,7 +71,7 @@
 							<input
 								id="street"
 								type="text"
-								bind:value={street}
+								bind:value={checkout.street}
 								placeholder="ул. Ленина, д. 5, кв. 12"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -90,7 +81,7 @@
 							<input
 								id="city"
 								type="text"
-								bind:value={city}
+								bind:value={checkout.city}
 								placeholder="Екатеринбург"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -100,7 +91,7 @@
 							<input
 								id="region"
 								type="text"
-								bind:value={region}
+								bind:value={checkout.region}
 								placeholder="Свердловская область"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -110,7 +101,7 @@
 							<input
 								id="postalCode"
 								type="text"
-								bind:value={postalCode}
+								bind:value={checkout.postalCode}
 								placeholder="620000"
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
 							/>
@@ -119,7 +110,7 @@
 							<label for="comment" class="text-sm font-medium text-gray-700">Комментарий к заказу</label>
 							<textarea
 								id="comment"
-								bind:value={comment}
+								bind:value={checkout.comment}
 								placeholder="Уточнения по доставке, подъезд, код домофона..."
 								rows={3}
 								class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition resize-none"
@@ -139,22 +130,22 @@
 					<div class="flex gap-3">
 						<button
 							type="button"
-							onclick={() => deliveryMethod = 'courier'}
-							class="flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all {deliveryMethod === 'courier' ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 text-gray-600 hover:border-slate-300'}"
+							onclick={() => checkout.deliveryMethod = 'courier'}
+							class="flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all {checkout.deliveryMethod === 'courier' ? 'border-emerald-500 text-emerald-700' : 'border-slate-200 text-gray-600 hover:border-slate-300'}"
 						>
 							Курьером
 						</button>
 						<button
 							type="button"
-							onclick={() => deliveryMethod = 'post'}
-							class="flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all {deliveryMethod === 'post' ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 text-gray-600 hover:border-slate-300'}"
+							onclick={() => checkout.deliveryMethod = 'post'}
+							class="flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all {checkout.deliveryMethod === 'post' ? 'border-emerald-500 text-emerald-700' : 'border-slate-200 text-gray-600 hover:border-slate-300'}"
 						>
 							Почтой
 						</button>
 						<button
 							type="button"
-							onclick={() => deliveryMethod = 'pickup'}
-							class="flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all {deliveryMethod === 'pickup' ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 text-gray-600 hover:border-slate-300'}"
+							onclick={() => checkout.deliveryMethod = 'pickup'}
+							class="flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all {checkout.deliveryMethod === 'pickup' ? 'border-emerald-500 text-emerald-700' : 'border-slate-200 text-gray-600 hover:border-slate-300'}"
 						>
 							Самовывоз
 						</button>

@@ -58,6 +58,7 @@
 
 {@render children()}
 
+{#if step !== 3}
 <footer class="bg-white border-t border-slate-200 fixed bottom-0 left-0 right-0 z-50">
 	<div class="max-w-[1280px] mx-auto px-8 py-3 grid grid-cols-3 items-center">
 
@@ -85,10 +86,11 @@
 				href={continueHref}
 				class="flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 text-white text-sm font-medium rounded-full hover:bg-emerald-700 transition-colors"
 			>
-				Продолжить
+				{step === 3 ? 'Оформить заказ' : 'Продолжить'}
 				<ChevronRight size={16} />
 			</a>
 		</div>
 
 	</div>
 </footer>
+{/if}
