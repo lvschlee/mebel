@@ -5,13 +5,13 @@
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 </script>
 
-<div class="max-w-7xl mx-auto px-4 md:px-8 py-8">
+<div class="max-w-7xl mx-auto px-8 py-12">
 	<Breadcrumbs items={[
 		{ label: 'Главная', href: '/' },
 		{ label: 'Избранное', href: '' }
 	]} />
 
-	<h1 class="text-2xl font-bold text-slate-900 mb-6">
+	<h1 class="text-2xl font-medium text-slate-900 mb-6">
 		Избранное
 		{#if favorites.totalItems > 0}
 			<span class="text-slate-400 font-normal text-lg">({favorites.totalItems})</span>

@@ -7,7 +7,7 @@
 
 	let { children } = $props();
 
-	const showHeaderFooter = $derived(!page.url.pathname.startsWith('/checkout'));
+	const showHeaderFooter = $derived(!page.url.pathname.startsWith('/checkout') && !page.url.pathname.startsWith('/login'));
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>

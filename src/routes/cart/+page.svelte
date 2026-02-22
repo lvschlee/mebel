@@ -41,7 +41,7 @@
 	function carouselNext() { carouselOffset = Math.min(maxCarouselOffset, carouselOffset + 1); }
 </script>
 
-<div class="max-w-[1280px] mx-auto px-8 py-12">
+<div class="max-w-7xl mx-auto px-8 py-12">
 	<!-- Хлебные крошки -->
 	<Breadcrumbs
 		items={[
@@ -50,26 +50,20 @@
 		]}
 	/>
 
-	<h1 class="text-2xl font-medium text-gray-800 mb-8">Корзина</h1>
+	<h1 class="text-2xl font-medium text-gray-800 mb-6">Корзина</h1>
 
 	{#if cart.items.length === 0}
 		<!-- Пустая корзина -->
-		<div class="flex flex-col items-center justify-center py-16 gap-6">
-			<div class="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center">
-				<ShoppingBag size={48} class="text-gray-400" />
-			</div>
-			<div class="text-center">
-				<h2 class="text-2xl font-semibold text-gray-800 mb-2">Корзина пуста</h2>
-				<p class="text-gray-600 mb-6">
-					Добавьте товары в корзину, чтобы оформить заказ
-				</p>
-				<a
-					href="/"
-					class="inline-block px-6 py-3 bg-emerald-600 text-white rounded-full font-medium hover:bg-emerald-700 transition-colors"
-				>
-					Перейти к покупкам
-				</a>
-			</div>
+		<div class="flex flex-col items-center justify-center py-24 gap-4 text-center">
+			<ShoppingBag size={48} class="text-slate-200" />
+			<p class="text-slate-500 text-lg">Корзина пуста</p>
+			<p class="text-slate-400 text-sm">Добавьте товары в корзину, чтобы оформить заказ</p>
+			<a
+				href="/"
+				class="mt-2 px-6 py-2.5 bg-emerald-600 text-white text-sm font-semibold rounded-full hover:bg-emerald-700 transition-colors"
+			>
+				Перейти к покупкам
+			</a>
 		</div>
 	{:else}
 		<!-- Список товаров -->
@@ -111,7 +105,7 @@
 								>
 									<Minus size={16} />
 								</button>
-								<span class="text-base font-medium text-gray-800 min-w-[2rem] text-center">
+								<span class="text-base font-medium text-gray-800 min-w-8 text-center">
 									{item.quantity}
 								</span>
 								<button
