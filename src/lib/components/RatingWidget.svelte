@@ -6,13 +6,15 @@
 		reviewsCount = null,
 		size = 'md',
 		showRatingNumber = true,
-		starColor = 'yellow'
+		starColor = 'yellow',
+		stackReviews = false
 	}: {
 		rating: number;
 		reviewsCount?: number | null;
 		size?: 'sm' | 'md' | 'lg';
 		showRatingNumber?: boolean;
 		starColor?: 'yellow' | 'gray';
+		stackReviews?: boolean;
 	} = $props();
 
 	// Определяем размер звезды в зависимости от size
@@ -28,7 +30,7 @@
 		: 'text-gray-800');
 </script>
 
-<div class="flex items-center gap-3">
+<div class="flex items-center gap-x-3 gap-y-0.5 {stackReviews ? 'flex-wrap' : ''}"  >
 	<!-- Звезды -->
 	<div class="flex items-center gap-1">
 		{#each Array(5) as _, index (index)}
@@ -46,6 +48,6 @@
 
 	<!-- Количество отзывов -->
 	{#if reviewsCount}
-		<span class="text-sm text-gray-600">({reviewsCount} отзывов)</span>
+		<span class="text-sm text-gray-600 {stackReviews ? 'max-[549px]:basis-full' : ''}">({reviewsCount} отзывов)</span>
 	{/if}
 </div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	// let { data } = $props(); // Будет использоваться для получения реальных данных товара
 
-	import { Heart, Truck, RotateCcw, ShieldCheck, Copy, ChevronDown, ChevronRight } from 'lucide-svelte';
+	import { Heart, Truck, RotateCcw, ShieldCheck, Copy, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-svelte';
 	import RatingWidget from '$lib/components/RatingWidget.svelte';
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
@@ -33,6 +33,16 @@
 	let selectedImageIndex = $state(0);
 	let activeTab = $state<'description' | 'specs'>('description');
 	let quantity = $state(1);
+	let deliveryOpen = $state(false);
+	let returnsOpen = $state(false);
+	let paymentOpen = $state(false);
+
+	function prevImage() {
+		selectedImageIndex = (selectedImageIndex - 1 + product.thumbnails.length) % product.thumbnails.length;
+	}
+	function nextImage() {
+		selectedImageIndex = (selectedImageIndex + 1) % product.thumbnails.length;
+	}
 
 	// Похожие товары
 	const relatedProducts = [
@@ -84,12 +94,10 @@
 	]} />
 
 	<div class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-8 lg:gap-12">
-		<!-- Левая колонка: Галерея + Описание -->
-		<div class="flex flex-col gap-8">
-			<!-- Галерея изображений -->
+		<!-- Галерея изображений -->
 			<div class="flex gap-4">
-				<!-- Миниатюры (вертикально слева) -->
-				<div class="flex flex-col gap-2 overflow-y-auto">
+				<!-- Миниатюры (вертикально слева, только десктоп) -->
+				<div class="hidden lg:flex flex-col gap-2 overflow-y-auto">
 					{#each product.thumbnails as thumbnail, index (thumbnail)}
 						<button
 							type="button"
@@ -106,17 +114,45 @@
 				</div>
 
 				<!-- Главное изображение (справа) -->
-				<div class="flex-1 self-start">
+				<div class="flex-1 self-start relative">
 					<img
 						src={product.thumbnails[selectedImageIndex]}
 						alt={product.name}
 						class="w-full h-auto object-cover rounded-2xl"
 					/>
+					<!-- Стрелки (только мобильные/планшеты) -->
+					<button
+						type="button"
+						onclick={prevImage}
+						class="lg:hidden absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors"
+						aria-label="Предыдущее фото"
+					>
+						<ChevronLeft size={20} class="text-gray-700" />
+					</button>
+					<button
+						type="button"
+						onclick={nextImage}
+						class="lg:hidden absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors"
+						aria-label="Следующее фото"
+					>
+						<ChevronRight size={20} class="text-gray-700" />
+					</button>
+					<!-- Точки-индикаторы (только мобильные/планшеты) -->
+					<div class="lg:hidden absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+						{#each product.thumbnails as _, i (i)}
+							<button
+								type="button"
+								onclick={() => selectedImageIndex = i}
+								class="w-2 h-2 rounded-full transition-colors {selectedImageIndex === i ? 'bg-white' : 'bg-white/50'}"
+								aria-label="Фото {i + 1}"
+							></button>
+						{/each}
+					</div>
 				</div>
 			</div>
 
 		<!-- Блок описания товара -->
-		<div class="pt-8">
+		<div class="order-3">
 			<!-- Табы -->
 			<div class="flex gap-0 border-b border-slate-200 mb-6" role="tablist">
 				<button
@@ -220,10 +256,9 @@
 				</div>
 			{/if}
 		</div>
-		</div>
 
 		<!-- Правая колонка: Информация о товаре -->
-		<div class="flex flex-col gap-6">
+		<div class="flex flex-col gap-6 order-2 lg:row-span-2">
 		<!-- 1. Название товара -->
 		<h1 class="text-3xl md:text-4xl font-medium text-gray-800 leading-tight">
 			{product.name}
@@ -328,14 +363,17 @@
 			<!-- Информация о доставке и гарантиях -->
 			<div class="space-y-0">
 				<!-- Бесплатная доставка -->
-				<div class="flex items-start gap-3 py-4 border-t border-slate-200">
-					<div class="shrink-0 w-5 h-5 mt-0.5">
-						<Truck size={20} class="text-emerald-600" />
-					</div>
-					<div class="flex-1">
-						<p class="text-sm font-semibold text-gray-800 mb-1">
-							Бесплатная доставка на все заказы
-						</p>
+				<div class="border-t border-slate-200">
+					<button type="button" onclick={() => deliveryOpen = !deliveryOpen}
+						class="w-full flex items-center gap-3 py-4 text-left lg:cursor-default"
+					>
+						<div class="shrink-0 w-5 h-5">
+							<Truck size={20} class="text-emerald-600" />
+						</div>
+						<span class="flex-1 text-sm font-semibold text-gray-800">Бесплатная доставка на все заказы</span>
+						<ChevronDown size={16} class="lg:hidden shrink-0 text-gray-400 transition-transform duration-200 {deliveryOpen ? 'rotate-180' : ''}" />
+					</button>
+					<div class="{deliveryOpen ? '' : 'hidden'} lg:block pb-4 pl-8">
 						<p class="text-sm text-gray-600">
 							Доставка: <span class="text-emerald-600 font-medium">БЕСПЛАТНО</span> 4-7 февраля
 						</p>
@@ -346,14 +384,17 @@
 				</div>
 
 				<!-- Возврат товара -->
-				<div class="flex items-start gap-3 py-4 border-t border-slate-200">
-					<div class="shrink-0 w-5 h-5 mt-0.5">
-						<RotateCcw size={20} class="text-emerald-600" />
-					</div>
-					<div class="flex-1">
-						<p class="text-sm font-semibold text-gray-800 mb-1">
-							Возврат в течение 30 дней
-						</p>
+				<div class="border-t border-slate-200">
+					<button type="button" onclick={() => returnsOpen = !returnsOpen}
+						class="w-full flex items-center gap-3 py-4 text-left lg:cursor-default"
+					>
+						<div class="shrink-0 w-5 h-5">
+							<RotateCcw size={20} class="text-emerald-600" />
+						</div>
+						<span class="flex-1 text-sm font-semibold text-gray-800">Возврат в течение 30 дней</span>
+						<ChevronDown size={16} class="lg:hidden shrink-0 text-gray-400 transition-transform duration-200 {returnsOpen ? 'rotate-180' : ''}" />
+					</button>
+					<div class="{returnsOpen ? '' : 'hidden'} lg:block pb-4 pl-8">
 						<p class="text-sm text-gray-600">
 							Не устраивает товар? Верните любой товар в течение 30 дней после покупки для полного возврата средств или обмена. <button type="button" onclick={() => {}} class="text-emerald-600 hover:underline">Подробнее</button>
 						</p>
@@ -361,14 +402,17 @@
 				</div>
 
 				<!-- Безопасная оплата -->
-				<div class="flex items-start gap-3 py-4 border-t border-slate-200">
-					<div class="shrink-0 w-5 h-5 mt-0.5">
-						<ShieldCheck size={20} class="text-emerald-600" />
-					</div>
-					<div class="flex-1">
-						<p class="text-sm font-semibold text-gray-800 mb-1">
-							Безопасная оплата
-						</p>
+				<div class="border-t border-slate-200">
+					<button type="button" onclick={() => paymentOpen = !paymentOpen}
+						class="w-full flex items-center gap-3 py-4 text-left lg:cursor-default"
+					>
+						<div class="shrink-0 w-5 h-5">
+							<ShieldCheck size={20} class="text-emerald-600" />
+						</div>
+						<span class="flex-1 text-sm font-semibold text-gray-800">Безопасная оплата</span>
+						<ChevronDown size={16} class="lg:hidden shrink-0 text-gray-400 transition-transform duration-200 {paymentOpen ? 'rotate-180' : ''}" />
+					</button>
+					<div class="{paymentOpen ? '' : 'hidden'} lg:block pb-4 pl-8">
 						<p class="text-sm text-gray-600 mb-2">
 							Делайте покупки с уверенностью, используя нашу зашифрованную систему платежей, которая защищает вашу конфиденциальную информацию.
 						</p>
@@ -392,39 +436,37 @@
 				</div>
 
 				<!-- Продавец/Бренд -->
-				<div class="flex items-center gap-3 py-4 border-t border-slate-200">
-					<div class="shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-						<span class="text-lg font-bold text-gray-800">МУ</span>
-					</div>
-					<div class="flex-1">
-						<p class="text-sm font-semibold text-gray-800 mb-1">
-							Мебель Урала
-						</p>
-						<div class="flex items-center gap-2 text-xs text-gray-600">
-							<span class="flex items-center gap-1">
-								<span class="font-semibold text-gray-800">4.7</span> (12k+ отзывов)
-							</span>
-							<span>·</span>
-							<span>43K+ Продано</span>
+				<div class="border-t border-slate-200">
+					<div class="flex items-center gap-3 py-4">
+						<div class="shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+							<span class="text-lg font-bold text-gray-800">МУ</span>
+						</div>
+						<div class="flex-1">
+							<p class="text-sm font-semibold text-gray-800 mb-1">Мебель Урала</p>
+							<div class="flex items-center gap-2 text-xs text-gray-600">
+								<span class="flex items-center gap-1">
+									<span class="font-semibold text-gray-800">4.7</span> (12k+ отзывов)
+								</span>
+								<span>·</span>
+								<span>43K+ Продано</span>
+							</div>
 						</div>
 					</div>
+					<div class="grid grid-cols-2 gap-3 pb-4">
+						<button
+							type="button"
+							class="text-sm text-gray-700 py-2 px-4 border border-slate-200 rounded-full hover:bg-gray-50 transition-colors"
+						>
+							Профиль
+						</button>
+						<button
+							type="button"
+							class="text-sm text-gray-700 py-2 px-4 border border-slate-200 rounded-full hover:bg-gray-50 transition-colors"
+						>
+							Все товары
+						</button>
+					</div>
 				</div>
-
-			<!-- Кнопки продавца -->
-			<div class="grid grid-cols-2 gap-3 -mt-2">
-				<button
-					type="button"
-					class="text-sm text-gray-700 py-2 px-4 border border-slate-200 rounded-full hover:bg-gray-50 transition-colors"
-				>
-					Профиль
-				</button>
-				<button
-					type="button"
-					class="text-sm text-gray-700 py-2 px-4 border border-slate-200 rounded-full hover:bg-gray-50 transition-colors"
-				>
-					Все товары
-				</button>
-			</div>
 			</div>
 		</div>
 		</div>
@@ -434,7 +476,7 @@
 <!-- Секция похожих товаров -->
 <div class="max-w-[1280px] mx-auto px-8 pb-12">
 	<div class="flex items-center justify-between mb-6">
-		<h2 class="text-2xl font-semibold text-gray-800">Вам также понравится</h2>
+		<h2 class="text-2xl font-semibold text-gray-800">Вам понравится</h2>
 		<a href="/catalog" class="text-sm text-emerald-600 hover:underline">
 			Смотреть все →
 		</a>

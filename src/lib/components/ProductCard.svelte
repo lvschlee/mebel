@@ -52,7 +52,7 @@
 		</button>
 		<!-- Бейдж "Почти распродано" -->
 		<div
-			class="absolute top-3 left-3 bg-[#A7F3D0] text-[#065F46] rounded-full px-3 py-1 text-xs font-semibold"
+			class="absolute bottom-3 left-3 min-[550px]:bottom-auto min-[550px]:top-3 bg-[#A7F3D0] text-[#065F46] rounded-full px-3 py-1 text-xs font-semibold"
 		>
 			Почти распродано
 		</div>
@@ -68,8 +68,8 @@
 	<!-- Контент карточки -->
 	<div class="pt-3 flex flex-col gap-2">
 		<h3 class="text-sm font-medium text-gray-800">{title}</h3>
-		<div class="flex items-center justify-between">
-			<div class="flex items-baseline gap-2">
+		<div class="flex flex-col min-[460px]:flex-row min-[460px]:items-center min-[460px]:justify-between gap-0.5 min-[460px]:gap-0">
+			<div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
 				<span class="text-base font-semibold text-emerald-600">{price}</span>
 				{#if oldPrice}
 					<span class="text-sm line-through text-gray-500">{oldPrice}</span>
@@ -78,7 +78,7 @@
 			<span class="text-sm text-gray-500">{sold}</span>
 		</div>
 		{#if rating}
-			<RatingWidget {rating} {reviewsCount} size="sm" showRatingNumber={false} starColor="gray" />
+			<RatingWidget {rating} {reviewsCount} size="sm" showRatingNumber={false} starColor="gray" stackReviews={true} />
 		{/if}
 	<button
 		class="inline-flex items-center gap-2 px-3 py-1.5 border border-slate-200 text-gray-800 text-[13px] rounded-full hover:bg-gray-50 transition-colors self-start"

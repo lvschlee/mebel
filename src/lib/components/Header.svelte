@@ -17,7 +17,8 @@
 		Baby,
 		ChefHat,
 		Briefcase,
-		ChevronRight
+		ChevronRight,
+		ChevronLeft
 	} from 'lucide-svelte';
 	import { goto } from '$app/navigation';
 	import { cart } from '$lib/stores/cart.svelte';
@@ -140,13 +141,21 @@
 	];
 
 	let hoveredCategory = $state(catalogCategories[0]);
+
+	type MobileView = 'main' | 'category';
+	let mobileView = $state<MobileView>('main');
+	let mobileCategorySelected = $state(catalogCategories[0]);
+
+	$effect(() => {
+		if (!mobileMenuOpen) mobileView = 'main';
+	});
 </script>
 
 <header class="sticky top-0 z-50 w-full bg-white border-b border-slate-200">
 
 	<!-- Верхняя панель -->
-	<nav aria-label="Вспомогательная навигация" class="hidden md:block bg-slate-50">
-		<div class="max-w-7xl mx-auto px-8 flex items-center justify-between py-2">
+	<nav aria-label="Вспомогательная навигация" class="bg-slate-50">
+		<div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between py-2">
 			<button
 				onclick={() => (cityModalOpen = true)}
 				class="flex items-center gap-1 text-sm text-slate-500 hover:text-emerald-600 transition-colors cursor-pointer"
@@ -171,7 +180,7 @@
 
 	<!-- Основная навигация -->
 	<div class="relative w-full">
-	<div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center gap-3 md:gap-4 py-3 md:py-4">
+	<div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-wrap items-center gap-x-3 md:gap-x-4 gap-y-2 py-3 md:py-4">
 
 		<!-- Логотип -->
 		<a href="/" class="flex items-center gap-2 shrink-0">
@@ -180,7 +189,7 @@
 		</a>
 
 		<!-- Поиск + каталог (скрыт на мобайле без меню) -->
-		<div class="flex-1 flex items-center gap-3 min-w-0">
+		<div class="order-last w-full md:order-0 md:flex-1 flex items-center gap-3 min-w-0">
 			<!-- Кнопка Каталог (только desktop) -->
 			<button
 				onclick={() => { catalogOpen = !catalogOpen; hoveredCategory = catalogCategories[0]; }}
@@ -209,7 +218,7 @@
 		</div>
 
 		<!-- Действия -->
-		<div class="flex items-center gap-1 md:gap-4 shrink-0">
+		<div class="flex items-center gap-1 md:gap-4 shrink-0 ml-auto md:ml-0">
 			<!-- Избранное -->
 			<a
 				href="/favorites"
@@ -342,49 +351,77 @@
 
 	<!-- Мобильное меню (выпадает) -->
 	{#if mobileMenuOpen}
-		<div class="md:hidden border-t border-slate-100 bg-white px-4 py-4 flex flex-col gap-4">
-			<button
-				class="w-full px-4 py-2.5 bg-emerald-600 text-white font-semibold text-sm rounded-full flex items-center justify-center gap-2 hover:bg-emerald-700 transition-colors"
-			>
-				<Menu size={18} />
-				Каталог
-			</button>
+		<div class="md:hidden border-t border-slate-100 bg-white">
+			{#if mobileView === 'main'}
+				<div class="px-4 py-4 flex flex-col gap-4">
+					<!-- Категории шапки -->
+					<nav aria-label="Категории мобайл" class="flex flex-col gap-1">
+						{#each categories as cat}
+							{@const isActive = page.url.pathname === cat.href}
+							<a
+								href={cat.href}
+								class="px-4 py-2.5 font-semibold text-sm rounded-xl flex items-center gap-2 transition-colors
+									{isActive
+										? 'text-emerald-600 bg-emerald-50'
+										: 'text-slate-700 hover:bg-slate-100'}"
+								onclick={() => (mobileMenuOpen = false)}
+							>
+								<cat.icon size={16} />
+								{cat.label}
+							</a>
+						{/each}
+					</nav>
 
-			<nav aria-label="Категории мобайл" class="flex flex-col gap-1">
-				{#each categories as cat}
-					{@const isActive = page.url.pathname === cat.href}
-					<a
-						href={cat.href}
-						class="px-4 py-2.5 font-semibold text-sm rounded-xl flex items-center gap-2 transition-colors
-							{isActive
-								? 'text-emerald-600 bg-emerald-50'
-								: 'text-slate-700 hover:bg-slate-100'}"
-						onclick={() => (mobileMenuOpen = false)}
+					<hr class="border-slate-100" />
+
+					<!-- Каталог -->
+					<div class="flex flex-col gap-1">
+						{#each catalogCategories as cat}
+							<button
+								onclick={() => { mobileCategorySelected = cat; mobileView = 'category'; }}
+								class="px-4 py-2.5 text-sm font-medium rounded-xl flex items-center justify-between gap-2 text-slate-700 hover:bg-slate-100 transition-colors"
+							>
+								<span class="flex items-center gap-2.5">
+									<cat.icon size={16} />
+									{cat.label}
+								</span>
+								<ChevronRight size={15} class="text-slate-400 shrink-0" />
+							</button>
+						{/each}
+					</div>
+				</div>
+			{:else}
+				<!-- Подкатегории выбранной категории -->
+				<div class="px-4 py-4 flex flex-col gap-3">
+					<button
+						onclick={() => (mobileView = 'main')}
+						class="flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-emerald-600 transition-colors self-start"
 					>
-						<cat.icon size={16} />
-						{cat.label}
-					</a>
-				{/each}
-			</nav>
+						<ChevronLeft size={16} />
+						Назад
+					</button>
 
-			<div class="flex flex-col gap-2 pt-2 border-t border-slate-100">
-				<button
-					onclick={() => (cityModalOpen = true)}
-					class="flex items-center gap-1 text-sm text-slate-500 hover:text-emerald-600 transition-colors"
-				>
-					<MapPin size={14} />
-					<span>{cityStore.selected}</span>
-				</button>
-				<a
-					href="/login"
-					class="w-full px-4 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-full text-center hover:bg-emerald-700 transition-colors"
-				>
-					Войти
-				</a>
-				<button class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors py-1">
-					Разместить объявление
-				</button>
-			</div>
+					<a
+						href={mobileCategorySelected.href}
+						onclick={() => { mobileMenuOpen = false; mobileView = 'main'; }}
+						class="text-base font-bold text-slate-900 hover:text-emerald-600 transition-colors"
+					>
+						{mobileCategorySelected.label}
+					</a>
+
+					<div class="flex flex-col gap-1">
+						{#each mobileCategorySelected.subcategories as sub}
+							<a
+								href={sub.href}
+								onclick={() => { mobileMenuOpen = false; mobileView = 'main'; }}
+								class="px-4 py-2.5 text-sm text-slate-600 rounded-xl hover:bg-slate-100 hover:text-emerald-600 transition-colors"
+							>
+								{sub.label}
+							</a>
+						{/each}
+					</div>
+				</div>
+			{/if}
 		</div>
 	{/if}
 
