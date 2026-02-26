@@ -85,7 +85,7 @@
 	];
 </script>
 
-<div class="max-w-[1280px] mx-auto px-8 py-12">
+<div class="max-w-7xl mx-auto px-8 py-12">
 	<!-- Хлебные крошки -->
 	<Breadcrumbs items={[
 		{ label: 'Главная', href: '/' },
@@ -320,7 +320,7 @@
 					2k+ продано на этой неделе
 				</span>
 			</div>
-			<div class="flex items-center gap-2 min-w-[120px]">
+			<div class="flex items-center gap-2 min-w-30">
 				<label for="quantity" class="text-sm font-medium text-gray-800 shrink-0">
 					Кол-во:
 				</label>
@@ -474,7 +474,7 @@
 </div>
 
 <!-- Секция похожих товаров -->
-<div class="max-w-[1280px] mx-auto px-8 pb-12">
+<div class="max-w-7xl mx-auto px-8 pb-12">
 	<div class="flex items-center justify-between mb-6">
 		<h2 class="text-2xl font-semibold text-gray-800">Вам понравится</h2>
 		<a href="/catalog" class="text-sm text-emerald-600 hover:underline">

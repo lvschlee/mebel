@@ -33,8 +33,8 @@
 	{:else}
 		<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
 			{#each favorites.items as item (item.id)}
-				<div class="relative">
-					<a href="/product/{item.id}" class="block group">
+				<div class="relative flex flex-col h-full">
+					<a href="/product/{item.id}" class="block group flex-1">
 						<div class="relative rounded-2xl overflow-hidden aspect-square bg-slate-100">
 							<img src={item.image} alt={item.name} class="w-full h-full object-cover" />
 						</div>

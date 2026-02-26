@@ -35,9 +35,9 @@
 	const isFavorited = $derived(favorites.has(slug));
 </script>
 
-<a href="/product/{slug}" class="block overflow-hidden group cursor-pointer">
+<a href="/product/{slug}" class="flex flex-col overflow-hidden group cursor-pointer">
 	<!-- Изображение с оверлеями -->
-	<div class="relative rounded-2xl overflow-hidden">
+	<div class="relative rounded-2xl overflow-hidden @container">
 		<img src={image} alt={title} class="w-full aspect-square object-cover" />
 		<!-- Кнопка избранного -->
 		<button
@@ -52,7 +52,7 @@
 		</button>
 		<!-- Бейдж "Почти распродано" -->
 		<div
-			class="absolute bottom-3 left-3 min-[550px]:bottom-auto min-[550px]:top-3 bg-[#A7F3D0] text-[#065F46] rounded-full px-3 py-1 text-xs font-semibold"
+			class="absolute bottom-3 left-3 @[200px]:bottom-auto @[200px]:top-3 bg-[#A7F3D0] text-[#065F46] rounded-full px-3 py-1 text-xs font-semibold"
 		>
 			Почти распродано
 		</div>
@@ -66,9 +66,9 @@
 		</button>
 	</div>
 	<!-- Контент карточки -->
-	<div class="pt-3 flex flex-col gap-2">
+	<div class="pt-3 flex flex-col gap-2 flex-1">
 		<h3 class="text-sm font-medium text-gray-800">{title}</h3>
-		<div class="flex flex-col min-[460px]:flex-row min-[460px]:items-center min-[460px]:justify-between gap-0.5 min-[460px]:gap-0">
+		<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-0.5 lg:gap-0">
 			<div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
 				<span class="text-base font-semibold text-emerald-600">{price}</span>
 				{#if oldPrice}
@@ -81,7 +81,7 @@
 			<RatingWidget {rating} {reviewsCount} size="sm" showRatingNumber={false} starColor="gray" stackReviews={true} />
 		{/if}
 	<button
-		class="inline-flex items-center gap-2 px-3 py-1.5 border border-slate-200 text-gray-800 text-[13px] rounded-full hover:bg-gray-50 transition-colors self-start"
+		class="inline-flex items-center gap-2 px-3 py-1.5 border border-slate-200 text-gray-800 text-[13px] rounded-full hover:bg-gray-50 transition-colors self-start mt-auto"
 		onclick={(e) => {
 			e.preventDefault();
 			cart.addItem({

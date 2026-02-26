@@ -193,14 +193,14 @@
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M12.785 16.241c-4.869 0-7.639-3.337-7.752-8.888h2.44c.076 4.076 1.878 5.805 3.303 6.159V7.353h2.298v3.517c1.408-.152 2.889-1.76 3.388-3.517h2.298c-.385 2.163-1.992 3.771-3.134 4.422 1.142.531 2.97 1.938 3.67 4.466h-2.527c-.547-1.71-1.908-3.032-3.695-3.198v3.198h-.289z" fill="#0077FF"/>
 								</svg>
-								ВКонтакте
+								<span class="btn-text">ВКонтакте</span>
 							</button>
 							<button type="button" class="flex-1 flex items-center justify-center gap-2 py-2.5 border border-slate-200 rounded-full text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="#FC3F1D"/>
 									<path d="M13.116 8.015h1.428c.294 0 .356.14.356.294 0 .279-.441 1.68-.441 1.68s-.043.136.07.178c.099.037.234-.057.234-.057s1.4-1.178 1.96-1.178c.406 0 .532.222.532.5 0 .39-.49 1.58-.49 1.58s-.1.263.113.333c.212.07.742-.398 1.078-.693.195-.171.378-.289.574-.289.392 0 .47.278.47.5 0 .473-.862 1.247-1.47 1.74-.393.317-.658.64-.658 1.012 0 .448.336.636.7.636.49 0 1.05-.31 1.05-.31l.14.392s-.672.5-1.4.5c-.644 0-1.176-.35-1.176-1.05 0-.532.336-.924.77-1.26.42-.322.868-.672.868-1.008 0-.154-.084-.238-.238-.238-.336 0-.952.588-1.344.952-.308.28-.588.448-.868.448-.392 0-.546-.28-.546-.56 0-.406.504-1.54.504-1.54H12.3c-.35 0-.616.112-.784.448l-1.022 2.044c-.224.448-.448.63-.784.63-.294 0-.476-.154-.476-.434 0-.168.07-.378.168-.63l.994-2.38C10.578 9.37 10.9 9 11.5 9h.868l.224-.56c.154-.378.392-.63.784-.63h.476l-.406.98c-.056.154.014.225.168.225z" fill="white"/>
 								</svg>
-								Яндекс
+								<span class="btn-text">Яндекс</span>
 							</button>
 							<button type="button" class="flex-1 flex items-center justify-center gap-2 py-2.5 border border-slate-200 rounded-full text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -209,7 +209,7 @@
 									<path d="M12 13c-2.5 0-4.5 1.3-4.5 2.5V16.5h9V15.5c0-1.2-2-2.5-4.5-2.5z" fill="white"/>
 									<rect x="10" y="16" width="4" height="3" rx="1" fill="white"/>
 								</svg>
-								ОК
+								<span class="btn-text">ОК</span>
 							</button>
 						</div>
 
@@ -321,14 +321,14 @@
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M12.785 16.241c-4.869 0-7.639-3.337-7.752-8.888h2.44c.076 4.076 1.878 5.805 3.303 6.159V7.353h2.298v3.517c1.408-.152 2.889-1.76 3.388-3.517h2.298c-.385 2.163-1.992 3.771-3.134 4.422 1.142.531 2.97 1.938 3.67 4.466h-2.527c-.547-1.71-1.908-3.032-3.695-3.198v3.198h-.289z" fill="#0077FF"/>
 								</svg>
-								ВКонтакте
+								<span class="btn-text">ВКонтакте</span>
 							</button>
 							<button type="button" class="flex-1 flex items-center justify-center gap-2 py-2.5 border border-slate-200 rounded-full text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="#FC3F1D"/>
 									<path d="M13.116 8.015h1.428c.294 0 .356.14.356.294 0 .279-.441 1.68-.441 1.68s-.043.136.07.178c.099.037.234-.057.234-.057s1.4-1.178 1.96-1.178c.406 0 .532.222.532.5 0 .39-.49 1.58-.49 1.58s-.1.263.113.333c.212.07.742-.398 1.078-.693.195-.171.378-.289.574-.289.392 0 .47.278.47.5 0 .473-.862 1.247-1.47 1.74-.393.317-.658.64-.658 1.012 0 .448.336.636.7.636.49 0 1.05-.31 1.05-.31l.14.392s-.672.5-1.4.5c-.644 0-1.176-.35-1.176-1.05 0-.532.336-.924.77-1.26.42-.322.868-.672.868-1.008 0-.154-.084-.238-.238-.238-.336 0-.952.588-1.344.952-.308.28-.588.448-.868.448-.392 0-.546-.28-.546-.56 0-.406.504-1.54.504-1.54H12.3c-.35 0-.616.112-.784.448l-1.022 2.044c-.224.448-.448.63-.784.63-.294 0-.476-.154-.476-.434 0-.168.07-.378.168-.63l.994-2.38C10.578 9.37 10.9 9 11.5 9h.868l.224-.56c.154-.378.392-.63.784-.63h.476l-.406.98c-.056.154.014.225.168.225z" fill="white"/>
 								</svg>
-								Яндекс
+								<span class="btn-text">Яндекс</span>
 							</button>
 							<button type="button" class="flex-1 flex items-center justify-center gap-2 py-2.5 border border-slate-200 rounded-full text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -337,7 +337,7 @@
 									<path d="M12 13c-2.5 0-4.5 1.3-4.5 2.5V16.5h9V15.5c0-1.2-2-2.5-4.5-2.5z" fill="white"/>
 									<rect x="10" y="16" width="4" height="3" rx="1" fill="white"/>
 								</svg>
-								ОК
+								<span class="btn-text">ОК</span>
 							</button>
 						</div>
 
@@ -433,3 +433,11 @@
 	</div>
 </div>
 {/if}
+
+<style>
+	@media (max-width: 484px) {
+		.btn-text {
+			display: none;
+		}
+	}
+</style>

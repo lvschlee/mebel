@@ -94,7 +94,7 @@
 
 		<!-- Сетка товаров -->
 		<div class="flex-1 min-w-0">
-			<div class="grid grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-12">
+			<div class="grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-12">
 				{#each visibleProducts as product}
 					<ProductCard {...product} />
 				{/each}
