@@ -11,7 +11,8 @@
 		oldPrice = null,
 		sold,
 		rating = null,
-		reviewsCount = null
+		reviewsCount = null,
+		badge = null
 	}: {
 		image: string;
 		title: string;
@@ -20,6 +21,7 @@
 		sold: string;
 		rating?: number | null;
 		reviewsCount?: number | null;
+		badge?: string | null;
 	} = $props();
 
 	// Генерация slug из названия товара
@@ -38,7 +40,7 @@
 <a href="/product/{slug}" class="flex flex-col overflow-hidden group cursor-pointer">
 	<!-- Изображение с оверлеями -->
 	<div class="relative rounded-2xl overflow-hidden @container">
-		<img src={image} alt={title} class="w-full aspect-square object-cover" />
+		<img src={image} alt={title} class="w-full aspect-square object-cover" loading="lazy" />
 		<!-- Кнопка избранного -->
 		<button
 			class="absolute top-3 right-3 w-7 h-7 flex items-center justify-center bg-white rounded-full hover:bg-emerald-50 transition-colors shadow-sm"
@@ -50,12 +52,14 @@
 		>
 			<Heart size={15} class={isFavorited ? 'text-emerald-600 fill-emerald-600' : 'text-slate-500'} />
 		</button>
-		<!-- Бейдж "Почти распродано" -->
-		<div
-			class="absolute bottom-3 left-3 @[200px]:bottom-auto @[200px]:top-3 bg-[#A7F3D0] text-[#065F46] rounded-full px-3 py-1 text-xs font-semibold"
-		>
-			Почти распродано
-		</div>
+		<!-- Бейдж -->
+		{#if badge}
+			<div
+				class="absolute bottom-3 left-3 @[200px]:bottom-auto @[200px]:top-3 bg-[#A7F3D0] text-[#065F46] rounded-full px-3 py-1 text-xs font-semibold"
+			>
+				{badge}
+			</div>
+		{/if}
 		<!-- Кнопка быстрого просмотра -->
 		<button
 			class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-all opacity-0 group-hover:opacity-100"
