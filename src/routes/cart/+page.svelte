@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Trash2, Plus, Minus, ShoppingBag, ChevronLeft, ChevronRight, ShieldCheck, RotateCcw, BadgeCheck } from 'lucide-svelte';
+	import { Trash2, Plus, Minus, ShoppingBag, ChevronLeft, ChevronRight, ShieldCheck, RotateCcw, BadgeCheck, X } from 'lucide-svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { cart } from '$lib/stores/cart.svelte';
 	import ProductCard from '$lib/components/ProductCard.svelte';
@@ -21,6 +21,26 @@
 		if (item && item.quantity > 1) {
 			item.quantity -= 1;
 		}
+	}
+
+	// Модал удаления товара
+	let deleteModalOpen = $state(false);
+	let itemToDelete = $state<{ id: string; name: string; image: string } | null>(null);
+
+	function openDeleteModal(item: { id: string; name: string; image: string }) {
+		itemToDelete = item;
+		deleteModalOpen = true;
+	}
+
+	function confirmDelete() {
+		if (itemToDelete) cart.removeItem(itemToDelete.id);
+		deleteModalOpen = false;
+		itemToDelete = null;
+	}
+
+	function cancelDelete() {
+		deleteModalOpen = false;
+		itemToDelete = null;
 	}
 
 	// Карусель "Вам может понравиться"
@@ -138,8 +158,8 @@
 							</p>
 							<button
 								type="button"
-								onclick={() => cart.removeItem(item.id)}
-								class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+								onclick={() => openDeleteModal(item)}
+								class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-full transition-colors"
 							>
 								<Trash2 size={16} />
 								Удалить
@@ -296,6 +316,62 @@
 	</div>
 	{/if}
 </div>
+
+<!-- Модал подтверждения удаления -->
+{#if deleteModalOpen && itemToDelete}
+	<div
+		class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4"
+		role="dialog"
+		aria-modal="true"
+		aria-label="Подтверждение удаления товара"
+		onclick={(e) => { if (e.target === e.currentTarget) cancelDelete(); }}
+	>
+		<div class="bg-white rounded-2xl shadow-xl w-full max-w-sm px-8 py-6 flex flex-col gap-5">
+			<!-- Заголовок -->
+			<div class="flex items-center justify-between">
+				<h2 class="text-lg font-semibold text-gray-900">Удалить товар?</h2>
+				<button
+					type="button"
+					onclick={cancelDelete}
+					class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+					aria-label="Закрыть"
+				>
+					<X size={18} />
+				</button>
+			</div>
+
+			<p class="text-sm text-gray-500">Вы уверены, что хотите удалить этот товар из корзины?</p>
+
+			<!-- Превью товара -->
+			<div class="flex items-center gap-3 bg-slate-50 rounded-xl p-3">
+				<img
+					src={itemToDelete.image}
+					alt={itemToDelete.name}
+					class="w-14 h-14 rounded-lg object-cover shrink-0"
+				/>
+				<p class="text-sm font-medium text-gray-800 line-clamp-2">{itemToDelete.name}</p>
+			</div>
+
+			<!-- Кнопки -->
+			<div class="flex gap-3">
+				<button
+					type="button"
+					onclick={cancelDelete}
+					class="flex-1 py-2.5 px-4 text-sm font-medium text-gray-700 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors"
+				>
+					Отмена
+				</button>
+				<button
+					type="button"
+					onclick={confirmDelete}
+					class="flex-1 py-2.5 px-4 text-sm font-medium text-white bg-red-600 rounded-full hover:bg-red-700 transition-colors"
+				>
+					Удалить
+				</button>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style>
 	.scroll-hidden::-webkit-scrollbar {

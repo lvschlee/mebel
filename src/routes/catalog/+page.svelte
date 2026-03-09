@@ -27,27 +27,27 @@
 </script>
 
 <div class="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8">
-	<!-- Заголовок -->
-	<h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Популярные товары</h2>
-
-	<!-- Controls -->
+	<!-- Заголовок + Controls -->
 	<div class="flex items-center justify-between mb-6 md:mb-8">
-		<!-- Кнопка фильтров (мобайл/планшет) -->
-		<button
-			onclick={() => (filterOpen = true)}
-			class="lg:hidden flex items-center gap-2 px-3 py-2 border border-slate-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-		>
-			<Filter size={15} />
-			Фильтры
-		</button>
-		<select class="border border-slate-200 rounded-full px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-			<option value="">Сортировать по</option>
-			<option value="popular">Популярности</option>
-			<option value="price_asc">Цене: по возрастанию</option>
-			<option value="price_desc">Цене: по убыванию</option>
-			<option value="rating">Рейтингу</option>
-			<option value="new">Новинкам</option>
-		</select>
+		<h2 class="text-xl md:text-2xl font-bold text-gray-800">Популярные товары</h2>
+		<div class="flex items-center gap-3">
+			<!-- Кнопка фильтров (мобайл/планшет) -->
+			<button
+				onclick={() => (filterOpen = true)}
+				class="lg:hidden flex items-center gap-2 px-3 py-2 border border-slate-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+			>
+				<Filter size={15} />
+				Фильтры
+			</button>
+			<select class="border border-slate-200 rounded-full px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+				<option value="">Сортировать по</option>
+				<option value="popular">Популярности</option>
+				<option value="price_asc">Цене: по возрастанию</option>
+				<option value="price_desc">Цене: по убыванию</option>
+				<option value="rating">Рейтингу</option>
+				<option value="new">Новинкам</option>
+			</select>
+		</div>
 	</div>
 
 	<!-- Мобильный drawer с фильтрами -->
